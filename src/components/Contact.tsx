@@ -358,13 +358,13 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Submit button */}
-                <div className="pt-2">
+                {/* Submit and Email buttons */}
+                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                   <button
                     id="contact-submit-btn"
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-60 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 active:scale-95 transition-all"
+                    className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] disabled:opacity-60 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25 active:scale-95 transition-all cursor-pointer"
                   >
                     {isSubmitting ? (
                       <span>Sending message...</span>
@@ -375,6 +375,20 @@ export default function Contact() {
                       </>
                     )}
                   </button>
+
+                  <a
+                    id="contact-direct-email-btn"
+                    href={`mailto:atharv.04.kawalase@gmail.com?subject=${encodeURIComponent(
+                      formData.subject || 'Opportunity Inquiry'
+                    )}&body=${encodeURIComponent(
+                      formData.message ? `${formData.message}\n\nFrom: ${formData.name} (${formData.email})` : ''
+                    )}`}
+                    className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-[#111827] hover:bg-[#151C2C] text-[#CBD5E1] hover:text-[#F8FAFC] border border-slate-800 hover:border-slate-700 text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                    title="Draft email directly in your email app"
+                  >
+                    <Mail className="w-4 h-4 text-[#FACC15]" />
+                    <span>Open in Email App</span>
+                  </a>
                 </div>
               </form>
             </div>
